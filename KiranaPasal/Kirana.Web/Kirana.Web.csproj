@@ -170,6 +170,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductManagerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -235,9 +236,14 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\ProductManager\Index.cshtml" />
+    <Content Include="Views\ProductManager\Create.cshtml" />
+    <Content Include="Views\ProductManager\Edit.cshtml" />
+    <Content Include="Views\ProductManager\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -251,6 +257,24 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Kirana.Core\Kirana.Core.csproj">
+      <Project>{fdc47e90-c18e-400d-9449-8ada649e0155}</Project>
+      <Name>Kirana.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kirana.DataAccess.InMemory\Kirana.DataAccess.InMemory.csproj">
+      <Project>{9985b7f4-fd75-41d9-ba35-b49b3d2d5362}</Project>
+      <Name>Kirana.DataAccess.InMemory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kirana.DataAccess.Sql\Kirana.DataAccess.Sql.csproj">
+      <Project>{f0ad6e0e-08de-42d0-a361-155ac8bfc593}</Project>
+      <Name>Kirana.DataAccess.Sql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kirana.Services\Kirana.Services.csproj">
+      <Project>{2506c785-8f31-452e-aa4b-10dc89741712}</Project>
+      <Name>Kirana.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
