@@ -17,10 +17,11 @@ namespace Kirana.Core.Models
         [StringLength(20)]
         [DisplayName("Product Name")]
         public string Name { get; set; }
+        [DisplayName("Product Description")]
         public string description { get; set; }
 
         //Range validation on price
-        [Range(0,10000)]
+        [Range(0,100000)]
         public decimal Price { get; set; }
 
         public string Category { get; set; }

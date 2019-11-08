@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Kirana.Core.Models;
+using Kirana.Core.View_Models;
 using Kirana.DataAccess.InMemory;
 
 namespace Kirana.Web.Controllers
@@ -11,9 +12,11 @@ namespace Kirana.Web.Controllers
     public class ProductManagerController : Controller
     {
         ProductRepository context;//creating instance of the product repository
+        ProductCategoryRepository productCategories;//to load categories from the product category repository
         public ProductManagerController()//init of product repos object to new product repository
         {
             context = new ProductRepository();
+            productCategories = new ProductCategoryRepository();
         }
         // GET: ProductManager
         public ActionResult Index()//will return a list of product as list 
@@ -25,9 +28,11 @@ namespace Kirana.Web.Controllers
 
         public ActionResult Create()//this create is for the user to fill in the details of the product
         {
-            Products product = new Products();
+            ProductManagerViewModel viewModel = new ProductManagerViewModel();//creating instance of view model
 
-            return View(product);
+            viewModel.product = new Products();//passing product info in viewModel object
+            viewModel.ProductCategories = productCategories.Collection();//loading category info into viewModel Object.
+            return View(viewModel);//passing view model onto create page
         }
 
         [HttpPost]
@@ -54,7 +59,11 @@ namespace Kirana.Web.Controllers
             }
             else
             {
-                return View(productToEdit);//if product found loads edit page with the product 
+                ProductManagerViewModel viewModel = new ProductManagerViewModel();
+
+                viewModel.product = productToEdit;//puting product info in viewModel
+                viewModel.ProductCategories = productCategories.Collection();//Loading collection of category from collection
+                return View(viewModel);//passing viewModel onto the edit page 
             }
             
         }
