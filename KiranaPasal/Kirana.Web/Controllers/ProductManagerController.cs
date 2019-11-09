@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Kirana.Core.Contracts;
 using Kirana.Core.Models;
 using Kirana.Core.View_Models;
 using Kirana.DataAccess.InMemory;
@@ -10,13 +11,13 @@ using Kirana.DataAccess.InMemory;
 namespace Kirana.Web.Controllers
 {
     public class ProductManagerController : Controller
-    {
-        InMemoryRepository<Products> context;//creating instance of the product repository
-        InMemoryRepository<ProductCategory> productCategories;//to load categories from the product category repository
-        public ProductManagerController()//init of product repos object to new product repository
+    {  
+        IRepository<Products> context;//creating instance of the product repository
+        IRepository<ProductCategory> productCategories;//to load categories from the product category repository
+        public ProductManagerController(IRepository<Products> prodContext, IRepository<ProductCategory> prodCategoryContext )//init of product repos object to new product repository
         {
-            context = new InMemoryRepository<Products>();
-            productCategories = new InMemoryRepository<ProductCategory>();
+            context = prodContext;
+            productCategories =prodCategoryContext; 
         }
         // GET: ProductManager
         public ActionResult Index()//will return a list of product as list 

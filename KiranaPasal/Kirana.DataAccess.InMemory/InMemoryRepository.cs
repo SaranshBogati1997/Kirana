@@ -1,4 +1,5 @@
-﻿using Kirana.Core.Models;
+﻿using Kirana.Core.Contracts;
+using Kirana.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,9 @@ using System.Threading.Tasks;
 namespace Kirana.DataAccess.InMemory
 {
     /*This is a generic class made for reuse when needed later*/
-    public class InMemoryRepository<generics> where generics : BaseEntity//creating a base repository for reuse where object generics inherits from BaseEntity class
+    public class InMemoryRepository<generics> : IRepository<generics> where generics : BaseEntity//creating a base repository for reuse where object generics inherits from BaseEntity class
     {
+        /*This class implemetns the IMemory Interface present in the Core.contracts folder */
         ObjectCache cache = MemoryCache.Default;//creating default cache memory object
         List<generics> items;//init of internal list 
         string className;//internal objectfor storing different classname in the cache
@@ -19,16 +21,17 @@ namespace Kirana.DataAccess.InMemory
         {
             className = typeof(generics).Name;//reflection.This line of code gets the Name of the class
             items = cache[className] as List<generics>;//init of items and checking to see if there is anything in the cache and return if any
-            if(items == null)
+            if (items == null)
             {
                 items = new List<generics>();//if cache is empty initialize the items as list
             }
-           
+
         }
         public void Commit()//method to store inside the cache
         {
             cache[className] = items;//stores items in the cache 
         }
+        
 
         public void Insert(generics g)//inserts items 
         {
@@ -47,10 +50,10 @@ namespace Kirana.DataAccess.InMemory
             }
         }
 
-        public generics Find(String Id) 
+        public generics Find(String Id)
         {
             generics g = items.Find(i => i.Id == Id);
-            if(g != null)
+            if (g != null)
             {
                 return g;
             }
@@ -67,16 +70,16 @@ namespace Kirana.DataAccess.InMemory
         public void Delete(String Id)
         {
             generics itemToDelete = items.Find(i => i.Id == Id);
-            if(itemToDelete != null)
+            if (itemToDelete != null)
             {
                 items.Remove(itemToDelete);
-            } 
+            }
             else
             {
                 throw new Exception(className + "Not Found");
             }
         }
-         
+
     }
 
 }

@@ -1,4 +1,5 @@
-﻿using Kirana.Core.Models;
+﻿using Kirana.Core.Contracts;
+using Kirana.Core.Models;
 using Kirana.DataAccess.InMemory;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,10 @@ namespace Kirana.Web.Controllers
 {
     public class ProductCategoryController : Controller
     {
-        InMemoryRepository<ProductCategory> context;//creating instance of the product repository
-        public ProductCategoryController()//init of product repos object to new product repository
+        IRepository<ProductCategory> context;//creating instance of the product repository
+        public ProductCategoryController(IRepository<ProductCategory> productCategoryContext)//init of product repos object to new product repository
         {
-            context = new InMemoryRepository<ProductCategory>();
+            context =productCategoryContext;
         }
         // GET: ProductManager
         public ActionResult Index()//will return a list of product as list 
