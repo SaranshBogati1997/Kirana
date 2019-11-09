@@ -10,10 +10,10 @@ namespace Kirana.Web.Controllers
 {
     public class ProductCategoryController : Controller
     {
-        ProductCategoryRepository context;//creating instance of the product repository
+        InMemoryRepository<ProductCategory> context;//creating instance of the product repository
         public ProductCategoryController()//init of product repos object to new product repository
         {
-            context = new ProductCategoryRepository();
+            context = new InMemoryRepository<ProductCategory>();
         }
         // GET: ProductManager
         public ActionResult Index()//will return a list of product as list 

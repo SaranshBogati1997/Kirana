@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Kirana.Core.Models
 {
-    public class Products
+    public class Products: BaseEntity
     {
         //Products properties definition
-        public string Id { get; set; }
+        
 
         //validation added to Name's Max length and display when scaffolding
         [StringLength(20)]
@@ -28,9 +28,6 @@ namespace Kirana.Core.Models
 
         public string Image { get; set; }
 
-        public Products()//Constructor to initialize the id 
-        {
-            this.Id = Guid.NewGuid().ToString();
-        }
+        
     }
 }
