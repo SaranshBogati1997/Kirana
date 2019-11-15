@@ -1,0 +1,75 @@
+﻿@model Kirana.Core.Models.Products
+
+@{
+    ViewBag.Title = Model.Name + "Details";
+}
+
+<h2>@Html.DisplayFor(model => model.Name)</h2>
+
+<hr />
+
+<div class="row mt-5">
+    <div class="col-md-3">
+        <img src="~/Content/ProductImages/@Model.Image" alt="@Model.Name" style="height:250px;"/>
+    </div>
+    <div class="col-md-9">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CreatedAt)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Category)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Category)
+            </dd>
+
+
+
+        </dl>
+        
+        <div class="text-center col-md-6">
+            <a href="#" class="btn btn-success text-center">Add to Basket</a>
+
+
+        </div>
+
+        
+
+    </div>
+    
+</div>
+<p style="margin-top:1em;">
+    
+    @Html.ActionLink("Back to List", "Index")
+</p>
