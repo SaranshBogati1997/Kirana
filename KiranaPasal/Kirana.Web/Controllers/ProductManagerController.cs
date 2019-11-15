@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -37,7 +38,8 @@ namespace Kirana.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Products product)//this create method is for the details to be posted 
+        //create method to post result expects data from the form and and attached file 
+        public ActionResult Create(Products product,HttpPostedFileBase file)//this create method is for the details to be posted. 
         {
             if (!ModelState.IsValid)//check if the model is valid for the given details
             {
@@ -45,6 +47,11 @@ namespace Kirana.Web.Controllers
             }
             else
             {
+                if(file != null)
+                {
+                    product.Image = product.Id + Path.GetExtension(file.FileName);//gives a unique name to the image file 
+                    file.SaveAs(Server.MapPath("//Content//ProductImages//") + product.Image);//saves it on the disk
+                }
                 context.Insert(product);//if valid then insert into object of product repository. it contains all the method defined in the class
                 context.Commit();//saves the data to memory
                 return RedirectToAction("Index");//redirect to index page once data is saved
@@ -69,7 +76,7 @@ namespace Kirana.Web.Controllers
             
         }
         [HttpPost]
-        public ActionResult Edit(Products product, String Id)//Edit method to actually post the changes made
+        public ActionResult Edit(Products product, String Id, HttpPostedFileBase file)//Edit method to actually post the changes made
         {
             Products productToEdit = context.Find(Id);//finds the product in the repository
             if (productToEdit == null)
@@ -84,6 +91,11 @@ namespace Kirana.Web.Controllers
                 }
                 else//if model is valid manually update the product to edit object with the details provided by the user via the UI.
                 {
+                if(file != null)
+                    {
+                        product.Image = productToEdit.Id + Path.GetExtension(file.FileName);
+                        file.SaveAs(Server.MapPath("//Content//ProductImages//") + product.Image);
+                    }
                 productToEdit.Category = product.Category;
                 productToEdit.description = product.description;
                 productToEdit.Name = product.Name;
