@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Kirana.Core.Models.Products>
+﻿@model Kirana.Core.View_Models.ProductListViewModel
 
 @{
     ViewBag.Title = "Home Page";
@@ -11,8 +11,23 @@
     <hr />
     <h3 class="text-center">Our Products</h3>
     <hr />
+    <div class="col-md-2">
+        <h4>Filter By Category</h4>
+        <div class="list-group">
+            @Html.ActionLink("All", "Index", null,
+           new { @class = Request["Category"]==null? "list-group-item active" : "list-group-item" })
+            @foreach(var cat in Model.ProductCategories)
+            {
+                @Html.ActionLink(cat.Category, "Index", new { Category = cat.Category},
+               new {@class = Request["Category"]==cat.Category? "list-group-item active" : "list-group-item" })
+            }
+        </div>
+    </div>
+    <div class="col-md-10">
 
-   @foreach (var item in Model)
+    </div>
+
+   @foreach (var item in Model.products)
    {
 <div class="col-md-4" style="height:450px;padding:1em;border:1px solid thin #D6DBDF">
     <div class="col-md-12">
