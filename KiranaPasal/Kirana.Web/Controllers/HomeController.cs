@@ -1,5 +1,6 @@
 ﻿using Kirana.Core.Contracts;
 using Kirana.Core.Models;
+using Kirana.Core.View_Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +19,24 @@ namespace Kirana.Web.Controllers
             productCategories = prodCategoryContext;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string Category=null)
         {
-            List<Products> products = context.Collection().ToList();//finds products on the db and returns them as list
-            return View(products);//the object is passed onto the view to display
+
+            List<Products> products;//finds products on the db and returns them as list
+            List<ProductCategory> categories = productCategories.Collection().ToList();
+            if(categories == null)
+            {
+                products = context.Collection().ToList();
+            }
+            else
+            {
+                products = context.Collection().Where(p => p.Category == Category).ToList();
+            }
+            ProductListViewModel model = new ProductListViewModel();
+            model.product = products;
+            model.ProductCategories =categories;
+
+            return View(model);//the object is passed onto the view to display
         }
 
         public ActionResult Details(string Id)
