@@ -1,4 +1,5 @@
 ﻿using Kirana.Core.Contracts;
+using Kirana.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,12 @@ namespace Kirana.Web.Controllers
     public class BasketController : Controller
     {
         INewBasketService basketService;
+        IOrderService orderService;
 
-        public BasketController(INewBasketService BasketService)
+        public BasketController(INewBasketService BasketService,IOrderService OrderService)
         {
             this.basketService = BasketService;
+            this.orderService = OrderService;
         }
         // GET: Basket2
         public ActionResult Index()
@@ -41,6 +44,28 @@ namespace Kirana.Web.Controllers
             var basketSummary = basketService.GetBasketSummary(this.HttpContext);
 
             return PartialView(basketSummary);
+        }
+
+        public ActionResult Checkout()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Checkout(Order order)
+        {
+            var basketItem = basketService.GetBasketItems(this.HttpContext);
+            order.OrderStatus = "Processing Order";
+
+            //payment
+            order.OrderStatus = "Payment Processed";
+            orderService.CreateOrder(order, basketItem);
+            basketService.ClearBasket(this.HttpContext);
+            return RedirectToAction("ThankYou",new { OrderId = order.Id});
+        }
+        public ActionResult ThankYou(String OrderId)
+        {
+            ViewBag.OrderId = OrderId;
+            return View();
         }
     }
 }

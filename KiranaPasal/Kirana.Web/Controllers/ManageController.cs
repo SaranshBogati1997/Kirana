@@ -20,11 +20,7 @@ namespace Kirana.Web.Controllers
         {
         }
 
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
-        }
+
 
         public ApplicationSignInManager SignInManager
         {
@@ -32,9 +28,9 @@ namespace Kirana.Web.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -333,7 +329,7 @@ namespace Kirana.Web.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -384,6 +380,6 @@ namespace Kirana.Web.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }

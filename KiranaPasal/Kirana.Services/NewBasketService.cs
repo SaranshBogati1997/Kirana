@@ -156,7 +156,12 @@ namespace Kirana.Services
             }
         }
 
-        
+        public void ClearBasket(HttpContextBase httpContext)
+        {
+            NewBasket basket = GetBasket(httpContext,false);
+            basket.BasketItems.Clear();
+            basketContext.Commit();
+        }
 
         
     }

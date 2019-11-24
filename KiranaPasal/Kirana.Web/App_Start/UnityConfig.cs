@@ -51,8 +51,15 @@ namespace Kirana.Web
             container.RegisterType<IRepository<ProductCategory>, SQLRepository<ProductCategory>>();
             container.RegisterType<IRepository<NewBasket>, SQLRepository<NewBasket>>();
             container.RegisterType<IRepository<NewBasketItem>, SQLRepository<NewBasketItem>>();
+            container.RegisterType<IRepository<Order>, SQLRepository<Order>>();
+            container.RegisterType<IRepository<Customer>, SQLRepository<Customer>>();
+
+
+
 
             container.RegisterType<INewBasketService, NewBasketService>();
+            container.RegisterType<IOrderService, OrderService>();
+
 
         }
     }

@@ -14,5 +14,6 @@ namespace Kirana.Core.Contracts
         void RemoveFromBasket(HttpContextBase httpContext, string itemId);
         List<NewBasketItemViewModel> GetBasketItems(HttpContextBase httpContext);
         NewBasketSummaryViewModel GetBasketSummary(HttpContextBase httpContext);
+        void ClearBasket(HttpContextBase httpContext);
     }
 }

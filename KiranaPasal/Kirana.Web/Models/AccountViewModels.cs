@@ -79,6 +79,29 @@ namespace Kirana.Web.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+        [Required]
+        [Display(Name = "First Name")]
+
+        public string FirstName { get; set; }
+        [Required]
+        [Display(Name = "Last Name")]
+
+
+        public string LastName { get; set; }
+        [Required]
+
+        public string Country { get; set; }
+        [Required]
+
+        public string District { get; set; }
+        [Required]
+
+        public string City { get; set; }
+        [Required]
+        [Display(Name = "Zip Code")]
+
+
+        public string ZipCode { get; set; }
     }
 
     public class ResetPasswordViewModel

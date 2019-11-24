@@ -45,10 +45,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\INewBasketService.cs" />
+    <Compile Include="Contracts\IOrderService.cs" />
     <Compile Include="Contracts\IRepository.cs" />
     <Compile Include="Models\BaseEntity.cs" />
+    <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\NewBasket.cs" />
     <Compile Include="Models\NewBasketItem.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderItem.cs" />
     <Compile Include="Models\ProductCategory.cs" />
     <Compile Include="Models\Products.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
