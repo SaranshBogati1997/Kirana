@@ -1,51 +1,55 @@
 ﻿@model Kirana.Core.View_Models.ProductListViewModel
 
-@{
-    ViewBag.Title = "Home Page";
-}
-    <div class="jumbotron text-center">
-        <h1 class="text-primary">Welcome to Kirana Pasal</h1>
-        <small class="text-danger">Your Home to a new way of Shopping</small>
-    </div>
-
-    <hr />
-    <h3 class="text-center">Our Products</h3>
-    <hr />
-
-<div class="col-md-2">
-    <h4>Filter By Category</h4>
-    <div class="list-group">
-        @Html.ActionLink("All","Index",null, new {@class = Request["Category"]==null?"list-group-item active":"list-group-item"  } )
-        @foreach(var cat in Model.ProductCategories)
-        {
-            @Html.ActionLink(cat.Category, "Index", new{ Category = cat.Category  },new { @class = Request["Category"]==cat.Category?"list-group-item active":"list-group-item"})
-        }
-    </div>
-</div>
-<div class="col-md-10">
-
-
-    @foreach (var item in Model.product)
-    {
-        <div class="col-md-4" style="height:450px;padding:1em;border:1px solid thin #D6DBDF">
-            <div class="col-md-12">
-                <img src="~/Content/ProductImages/@item.Image" alt="@item.Name" style="height:250px;" />
-            </div>
-
-            <div class="col-md-12">
-                <strong> @Html.ActionLink(item.Name, "Details", new { id = item.Id })</strong>
-            </div>
-            <div class="col-md-12">
-                <small>@item.description</small>
-            </div>
-            <div class="col-md-12">
-                <p>@item.Price</p>
-            </div>
-            <div class="col-md-10 text-center">
-                <a href="@Url.Action("AddToBasket","Basket",new { Id = item.Id})" class="btn btn-success ">Add to Basket</a>
-            </div>
-
-        </div>
+    @{
+        ViewBag.Title = "Home Page";
     }
-</div>
-<div class="col-md-12 clearfix"  ></div>
+        <div class="jumbotron text-center">
+            <h1 class="text-primary">Welcome to Kirana Pasal</h1>
+            <small class="text-danger">Your Home to a new way of Shopping</small>
+        </div>
+
+        <hr />
+        <h3 class="text-center">Our Products</h3>
+        <hr />
+
+        <div class="row">
+            <div class="col-md-2">
+                <h4>Filter By Category</h4>
+                <div class="list-group">
+                    @Html.ActionLink("All", "Index", null, new { @class = Request["Category"] == null ? "list-group-item active" : "list-group-item" })
+                    @foreach (var cat in Model.ProductCategories)
+                    {
+                        @Html.ActionLink(cat.Category, "Index", new { Category = cat.Category }, new { @class = Request["Category"] == cat.Category ? "list-group-item active" : "list-group-item" })
+                    }
+                </div>
+            </div>
+
+            <div class="col-md-10">
+
+                @foreach (var item in Model.Products)
+                {
+                    <div class="col-md-4" style="height:450px;padding:1em;border:1px solid thin #D6DBDF">
+                        <div class="col-md-12">
+                            <img src="~/Content/ProductImages/@item.Image" alt="@item.Name" style="height:250px;" />
+                        </div>
+
+                        <div class="col-md-12">
+                            <strong> @Html.ActionLink(item.Name, "Details", new { id = item.Id })</strong>
+                        </div>
+                        <div class="col-md-12">
+                            <small>@item.description</small>
+                        </div>
+                        <div class="col-md-12">
+                            <p>@item.Price</p>
+                        </div>
+                        <div class="col-md-10 text-center">
+                            <a href="@Url.Action("AddToBasket","Basket",new { Id = item.Id})" class="btn btn-success ">Add to Basket</a>
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+
+    <div class="col-md-12 clearfix"  ></div>
+

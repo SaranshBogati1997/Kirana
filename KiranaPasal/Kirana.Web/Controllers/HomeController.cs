@@ -19,12 +19,12 @@ namespace Kirana.Web.Controllers
             productCategories = prodCategoryContext;
         }
 
-        public ActionResult Index(string Category=null)
+        public ActionResult Index(string Category = null)
         {
 
-            List<Products> products;//finds products on the db and returns them as list
+            List<Products> products;
             List<ProductCategory> categories = productCategories.Collection().ToList();
-            if(categories == null)
+            if (Category == null)
             {
                 products = context.Collection().ToList();
             }
@@ -32,12 +32,17 @@ namespace Kirana.Web.Controllers
             {
                 products = context.Collection().Where(p => p.Category == Category).ToList();
             }
-            ProductListViewModel model = new ProductListViewModel();
-            model.product = products;
-            model.ProductCategories =categories;
+            ProductListViewModel model = new ProductListViewModel()
+            {
+                Products = products,
+                ProductCategories = categories
+            };
 
-            return View(model);//the object is passed onto the view to display
+
+            return View(model);
         }
+
+        
 
         public ActionResult Details(string Id)
         {

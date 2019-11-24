@@ -9,7 +9,7 @@ namespace Kirana.Core.View_Models
 {
     public class ProductListViewModel
     {
-        public IEnumerable<Products> product { get; set; }
+        public IEnumerable<Products> Products { get; set; }
 
         public IEnumerable<ProductCategory> ProductCategories { get; set; }
     }
