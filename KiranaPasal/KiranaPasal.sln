@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kirana.DataAccess.InMemory"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kirana.Web", "Kirana.Web\Kirana.Web.csproj", "{46558F33-2989-4809-9369-0B4E794545F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kirana.Web.Tests", "Kirana.Web.Tests\Kirana.Web.Tests.csproj", "{B5E6B723-5D65-4745-AC80-0251581773DF}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,10 +39,6 @@ Global
 		{46558F33-2989-4809-9369-0B4E794545F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46558F33-2989-4809-9369-0B4E794545F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46558F33-2989-4809-9369-0B4E794545F5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B5E6B723-5D65-4745-AC80-0251581773DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B5E6B723-5D65-4745-AC80-0251581773DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B5E6B723-5D65-4745-AC80-0251581773DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B5E6B723-5D65-4745-AC80-0251581773DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

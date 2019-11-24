@@ -7,13 +7,13 @@ namespace Kirana.DataAccess.Sql.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Initial : IMigrationMetadata
+    public sealed partial class NewBasket : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(NewBasket));
         
         string IMigrationMetadata.Id
         {
-            get { return "201911140558504_Initial"; }
+            get { return "201911231232592_NewBasket"; }
         }
         
         string IMigrationMetadata.Source

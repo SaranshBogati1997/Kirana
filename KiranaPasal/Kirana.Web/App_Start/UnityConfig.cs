@@ -2,6 +2,7 @@ using Kirana.Core.Contracts;
 using Kirana.Core.Models;
 using Kirana.DataAccess.InMemory;
 using Kirana.DataAccess.Sql;
+using Kirana.Services;
 using System;
 
 using Unity;
@@ -47,7 +48,12 @@ namespace Kirana.Web
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<IRepository<Products>, SQLRepository<Products>>();
-            container.RegisterType<IRepository<ProductCategory>, SQLRepository<ProductCategory>>();    
+            container.RegisterType<IRepository<ProductCategory>, SQLRepository<ProductCategory>>();
+            container.RegisterType<IRepository<NewBasket>, SQLRepository<NewBasket>>();
+            container.RegisterType<IRepository<NewBasketItem>, SQLRepository<NewBasketItem>>();
+
+            container.RegisterType<INewBasketService, NewBasketService>();
+
         }
     }
 }

@@ -20,6 +20,10 @@ namespace Kirana.DataAccess.Sql
         //for wg we don't need to store viewmodels in the database
          public DbSet<Products> Products { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<NewBasket> NewBaskets { get; set; }
+
+        public DbSet<NewBasketItem> NewBasketItems { get; set; }
+
 
     }
 }
