@@ -11,7 +11,8 @@ using Kirana.DataAccess.InMemory;
 
 namespace Kirana.Web.Controllers
 {
-    public class ProductManagerController : Controller
+    [Authorize(Roles = "Admin")]
+     public class ProductManagerController : Controller
     {  
         IRepository<Products> context;//creating instance of the product repository
         IRepository<ProductCategory> productCategories;//to load categories from the product category repository

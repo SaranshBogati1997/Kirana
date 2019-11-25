@@ -33,7 +33,18 @@ namespace Kirana.Services
             OrderContext.Insert(baseOrder);
             OrderContext.Commit();
         }
-
-        
+        public List<Order> GetOrderList()
+        {
+            return OrderContext.Collection().ToList();
+        }
+        public Order GetOrder(string Id)
+        {
+            return OrderContext.Find(Id);
+        }
+        public void UpdateOrder(Order updatedOrder)
+        {
+            OrderContext.Update(updatedOrder);
+            OrderContext.Commit();
+        }
     }
 }

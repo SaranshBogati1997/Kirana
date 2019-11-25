@@ -1,0 +1,22 @@
+﻿@{ 
+    ViewBag.Title = "Admin Section";
+}
+    <h2>Admin Section</h2>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Manage Products</h4>
+            <div class="list-group">
+                <p>@Html.ActionLink("Product Categories", "Index", "ProductCategory", null, new { @class = "list-group-item" })</p>
+                <p>@Html.ActionLink("Products ", "Index", "ProductManager", null, new { @class = "list-group-item" })</p>
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h4>Manage Orders</h4>
+            <div class="list-group">
+                <p>@Html.ActionLink("Orders", "Index","OrderManager", null, new { @class = "list-group-item" })</p>
+
+            </div>
+        </div>
+    </div>

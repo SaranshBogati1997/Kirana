@@ -11,6 +11,9 @@ namespace Kirana.Core.Contracts
     public interface IOrderService
     {
         void CreateOrder(Order baseOrder, List<NewBasketItemViewModel> basketItems);
+        List<Order> GetOrderList();
+        void UpdateOrder(Order updatedOrder);
+        Order GetOrder(string Id);
 
     }
 }

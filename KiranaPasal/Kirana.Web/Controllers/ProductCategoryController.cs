@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Kirana.Web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ProductCategoryController : Controller
     {
         IRepository<ProductCategory> context;//creating instance of the product repository
