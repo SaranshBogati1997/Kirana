@@ -12,11 +12,13 @@ namespace Kirana.Web.Controllers
     {
         INewBasketService basketService;
         IOrderService orderService;
+        IRepository<Customer> customers;
 
-        public BasketController(INewBasketService BasketService,IOrderService OrderService)
+        public BasketController(INewBasketService BasketService,IOrderService OrderService, IRepository<Customer> Customers)
         {
             this.basketService = BasketService;
             this.orderService = OrderService;
+            this.customers = Customers;
         }
         // GET: Basket2
         public ActionResult Index()
@@ -46,15 +48,38 @@ namespace Kirana.Web.Controllers
             return PartialView(basketSummary);
         }
 
+        [Authorize]
         public ActionResult Checkout()
         {
-            return View();
+            Customer customer = customers.Collection().FirstOrDefault(c => c.Email == User.Identity.Name);
+            if(customer != null)
+            {
+                Order order = new Order()
+                {
+                    Email = customer.Email,
+                    Country = customer.Country,
+                    District = customer.District,
+                    City = customer.City,
+                    ZipCode = customer.ZipCode,
+                    FirstName = customer.FirstName,
+                    LastName = customer.LastName
+
+                };
+                return View(order);
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
         }
+
         [HttpPost]
+        [Authorize]
         public ActionResult Checkout(Order order)
         {
             var basketItem = basketService.GetBasketItems(this.HttpContext);
             order.OrderStatus = "Processing Order";
+            order.Email = User.Identity.Name;
 
             //payment
             order.OrderStatus = "Payment Processed";
